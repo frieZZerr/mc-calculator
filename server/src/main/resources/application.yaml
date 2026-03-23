@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: calculator
+  datasource:
+    url: jdbc:mysql://localhost:3306/mcdonalds
+    username: mcdonalds_user
+    password: mcdonalds_password
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    database-platform: 
+
+client:
+  protocol: http
+  host: localhost
+  port: 5173
