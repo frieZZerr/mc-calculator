@@ -1,26 +1,3 @@
-<template>
-  <nav class="navbar">
-    <div class="navbar-container">
-
-      <div class="logo">
-        <router-link to="/">McCalculator</router-link>
-      </div>
-
-      <ul class="nav-links">
-        <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/calculator">Calculator</router-link></li>
-      </ul>
-
-    </div>
-  </nav>
-</template>
-
-<script setup>
-
-</script>
-
-<style>
-
 .navbar {
   width: 100%;
   background-color: #1a1a1a;
@@ -71,5 +48,3 @@
     display: none;
   }
 }
-
-</style>

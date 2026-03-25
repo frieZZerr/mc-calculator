@@ -12,8 +12,8 @@
 
 <script>
 
-import ProductList from "../components/ProductList.vue"
-import { fetchProducts } from "../api/productApi"
+import ProductList from "../../components/ProductList/ProductList.vue"
+import { fetchProducts } from "../../api/productApi"
 
 export default {
 

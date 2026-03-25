@@ -1,0 +1,177 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: #111827;
+  padding: 30px;
+}
+
+.panel {
+  width: 1200px;
+  display: flex;
+  gap: 20px;
+}
+
+.column {
+  flex: 1;
+  border-radius: 12px;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.selected-column {
+  background: #1f2937;
+  color: white;
+}
+
+.products-column {
+  background: #1f2937;
+  color: white;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.products-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.products-header label {
+  font-weight: 500;
+  color: #f3f4f6;
+}
+
+.products-header select {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #9ca3af;
+  background: #111827;
+  color: #f3f4f6;
+}
+
+/* Selected list */
+.selected-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.selected-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: #111827;
+  margin-bottom: 8px;
+}
+
+.selected-image {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.name {
+  flex: 1;
+  font-weight: 500;
+  color: white;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.quantity-controls input {
+  width: 50px;
+  text-align: center;
+  border-radius: 6px;
+  border: 1px solid #9ca3af;
+  padding: 4px;
+}
+
+.quantity-controls button {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  background: #2563eb;
+  color: white;
+}
+
+.quantity-controls button:hover {
+  background: #1d4ed8;
+}
+
+.remove-btn {
+  background: #ef4444;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  background: #dc2626;
+}
+
+.empty {
+  opacity: 0.7;
+}
+
+.macro-summary {
+  padding: 16px;
+  border-radius: 12px;
+  background: #111827;
+  color: #f3f4f6;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.macro-summary h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #f3f4f6;
+}
+
+.macro-bar {
+  margin-bottom: 10px;
+}
+
+.macro-bar span {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.macro-gap {
+  height: 20px;
+}
+
+.bar {
+  width: 100%;
+  height: 10px;
+  background: #374151;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.5s ease-in-out;
+}
