@@ -6,6 +6,7 @@ export function useCalculator() {
 
   const products = ref([])
   const selectedQuantities = ref({})
+  const selectedOrder = ref([])
   const loading = ref(false)
 
   const selectedCategory = ref("all")
@@ -26,28 +27,43 @@ export function useCalculator() {
   })
 
   const selectedProducts = computed(() =>
-    products.value.filter(p => selectedQuantities.value[p.id] > 0)
+    selectedOrder.value.map(id =>
+      products.value.find(p => p.id === id)
+    )
   )
 
   function updateQuantity(product, change) {
     const id = product.id
     const current = selectedQuantities.value[id] || 0
-
     const newQuantity = current + change
 
-    if (newQuantity > 0)
+    const index = selectedOrder.value.indexOf(id)
+
+    if (newQuantity > 0) {
       selectedQuantities.value[id] = newQuantity
-    else
+
+      if (index === -1)
+        selectedOrder.value.push(id)
+    } else {
       delete selectedQuantities.value[id]
+
+      if (index !== -1)
+        selectedOrder.value.splice(index, 1)
+    }
   }
 
   function clearAllSelectedProducts() {
-    const items = Object.keys(selectedQuantities.value)
+    const ids = [...selectedOrder.value]
 
-    items.forEach((id, index) => {
+    ids.forEach((id, index) => {
       setTimeout(() => {
         delete selectedQuantities.value[id]
-      }, index * 25) // stagger animation
+
+        const orderIndex = selectedOrder.value.indexOf(id)
+        if (orderIndex !== -1) {
+          selectedOrder.value.splice(orderIndex, 1)
+        }
+      }, index * 25) // slightly smoother stagger
     })
   }
 

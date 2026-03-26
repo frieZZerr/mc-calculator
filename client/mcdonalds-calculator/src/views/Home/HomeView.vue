@@ -1,9 +1,15 @@
 <template>
-
-  <div class="home">
+  <div class="home" @scroll.passive="onScroll" ref="pageRef">
 
     <!-- HERO -->
     <section class="hero">
+      <div
+        class="hero-bg"
+        :style="{
+          transform: `translateY(${bgOffset}px) scale(1.1)`
+        }"
+      ></div>
+
       <div class="hero-content">
         <h1>McDonald's Macro Calculator</h1>
         <p>
@@ -39,18 +45,33 @@
     </section>
 
   </div>
-
 </template>
 
 <script setup>
 
-  import "./HomeView.css"
+  import { ref, onMounted, onUnmounted } from "vue"
   import { useRouter } from "vue-router"
+  import "./HomeView.css"
 
   const router = useRouter()
 
   function goToCalculator() {
     router.push("/calculator")
   }
+
+  const bgOffset = ref(0)
+
+  function onScroll() {
+    const scrollY = window.scrollY
+    bgOffset.value = scrollY * 0.4
+  }
+
+  onMounted(() => {
+    window.addEventListener("scroll", onScroll, { passive: true })
+  })
+
+  onUnmounted(() => {
+    window.removeEventListener("scroll", onScroll)
+  })
 
 </script>
