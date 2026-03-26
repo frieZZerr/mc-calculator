@@ -41,6 +41,16 @@ export function useCalculator() {
       delete selectedQuantities.value[id]
   }
 
+  function clearAllSelectedProducts() {
+    const items = Object.keys(selectedQuantities.value)
+
+    items.forEach((id, index) => {
+      setTimeout(() => {
+        delete selectedQuantities.value[id]
+      }, index * 25) // stagger animation
+    })
+  }
+
   const macros = computed(() => {
     const result = {}
 
@@ -80,5 +90,6 @@ export function useCalculator() {
     selectedProducts,
     macros,
     updateQuantity,
+    clearAllSelectedProducts
   }
 }

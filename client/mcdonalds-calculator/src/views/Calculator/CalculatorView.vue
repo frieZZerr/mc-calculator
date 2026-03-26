@@ -5,38 +5,43 @@
 
       <!-- Selected Products (Left) -->
       <div class="column selected-column">
-        <h2>Selected Products</h2>
+        <div class="selected-header">
+          <h2>Selected Products</h2>
+          <button class="clear-btn" @click="clearAllSelectedProducts">
+            Remove All
+          </button>
+        </div>
 
         <!-- Macro summary (always visible) -->
         <div class="macro-summary">
-        <h3>Total Macros</h3>
+          <h3>Total Macros</h3>
 
-        <div
-          v-for="(macro, key) in macros"
-          :key="key"
-          class="macro-bar"
-        >
-          <span>
-            {{ macro.label }}: {{ macro.value }} {{ macro.unit }}
-          </span>
+          <div
+            v-for="(macro, key) in macros"
+            :key="key"
+            class="macro-bar"
+          >
+            <span>
+              {{ macro.label }}: {{ macro.value }} {{ macro.unit }}
+            </span>
 
-          <div class="bar">
-            <div
-              class="fill"
-              :style="{
-                width: macro.percent + '%',
-                background: macro.color
-              }"
-            ></div>
+            <div class="bar">
+              <div
+                class="fill"
+                :style="{
+                  width: macro.percent + '%',
+                  background: macro.color
+                }"
+              ></div>
+            </div>
           </div>
         </div>
-      </div>
 
         <!-- Gap between list and macros -->
         <div class="macro-gap"></div>
 
         <!-- Selected products list -->
-        <ul class="selected-list" v-if="selectedProducts.length > 0">
+        <TransitionGroup name="list" tag="ul" class="selected-list" appear v-if="selectedProducts.length > 0">
           <li
             v-for="item in selectedProducts"
             :key="item.id"
@@ -53,7 +58,7 @@
 
             <button class="remove-btn" @click="updateQuantity(item, -selectedQuantities[item.id])">X</button>
           </li>
-        </ul>
+        </TransitionGroup>
 
       </div>
 
@@ -102,7 +107,8 @@
     filteredProducts,
     selectedProducts,
     macros,
-    updateQuantity
+    updateQuantity,
+    clearAllSelectedProducts
   } = useCalculator()
 
 </script>
