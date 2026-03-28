@@ -29,7 +29,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
 
-                registry.addMapping("/products")
+                registry.addMapping("/products/*")
                         .allowedOrigins(clientHostname)
                         .allowedMethods("GET")
                         .allowedHeaders("*");

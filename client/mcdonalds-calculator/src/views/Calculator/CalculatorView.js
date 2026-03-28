@@ -1,5 +1,5 @@
 import { ref, computed, onMounted } from "vue"
-import { fetchProducts } from "../../api/productApi"
+import { fetchProductsCalculator } from "../../api/productApi"
 import { MACROS_CONFIG } from "../../config/macros"
 
 export function useCalculator() {
@@ -88,7 +88,7 @@ export function useCalculator() {
   async function loadProducts() {
     loading.value = true
     try {
-      products.value = await fetchProducts()
+      products.value = await fetchProductsCalculator()
     } finally {
       loading.value = false
     }

@@ -1,7 +1,8 @@
 package com.mc_donalds.calculator.service;
 
-import com.mc_donalds.calculator.model.Product;
 import com.mc_donalds.calculator.repository.ProductRepository;
+import com.mc_donalds.calculator.dto.product.ProductCalculator;
+import com.mc_donalds.calculator.dto.product.ProductDetails;
 
 import org.springframework.stereotype.Service;
 
@@ -17,11 +18,15 @@ public class ProductService {
         this.repository = repository;
     }
 
-    public List<Product> getAllProducts() {
-        return repository.findAll();
+    public List<ProductCalculator> getAllProductsCalculator() {
+        return repository.findBy(ProductCalculator.class);
     }
 
-    public Optional<Product> getProductById(Long id) {
-        return repository.findById(id);
+    public List<ProductDetails> getAllProductsDetails() {
+        return repository.findBy(ProductDetails.class);
+    }
+
+    public Optional<ProductDetails> getProductDetailsById(Long id) {
+        return repository.findById(id, ProductDetails.class);
     }
 }

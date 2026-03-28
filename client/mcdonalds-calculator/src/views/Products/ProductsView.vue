@@ -13,7 +13,7 @@
 <script>
 
 import ProductList from "../../components/ProductList/ProductList.vue"
-import { fetchProducts } from "../../api/productApi"
+import { fetchProductsDetails } from "../../api/productApi"
 
 export default {
 
@@ -26,7 +26,7 @@ export default {
   },
 
   async mounted() {
-    this.products = await fetchProducts()
+    this.products = await fetchProductsDetails()
   },
 
   methods: {

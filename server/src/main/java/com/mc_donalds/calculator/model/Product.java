@@ -12,8 +12,6 @@ public class Product {
 
     private String name;
     private String category;
-
-    @Column(nullable = true)
     private String imageUrl;
 
     private int caloriesPer100g;
@@ -25,9 +23,16 @@ public class Product {
     private int proteinPer100g;
     private int proteinPortion;
 
+    private String description;
+    private String ingredients;
+    private String allergens;
+
     public Product() {}
 
-    public Product(String name, String category, String imageUrl, int calories100g, int calories, int fat100g, int fat, int carbs100g, int carbs, int protein100g, int protein) {
+    public Product(String name, String category, String imageUrl,
+                    int calories100g, int calories, int fat100g, int fat,
+                    int carbs100g, int carbs, int protein100g, int protein,
+                    String description, String ingredients, String allergens) {
 
         this.name = name;
         this.category = category;
@@ -40,6 +45,9 @@ public class Product {
         this.carbsPortion = carbs;
         this.proteinPer100g = protein100g;
         this.proteinPortion = protein;
+        this.description = description;
+        this.ingredients = ingredients;
+        this.allergens = allergens;
     }
 
     public Long getId() { return id; }
@@ -59,4 +67,8 @@ public class Product {
 
     public int getProteinPer100g() { return proteinPer100g; }
     public int getProteinPortion() { return proteinPortion; }
+
+    public String getDescription() { return description; }
+    public String getIngredients() { return ingredients; }
+    public String getAllergens()   { return allergens;   }
 }

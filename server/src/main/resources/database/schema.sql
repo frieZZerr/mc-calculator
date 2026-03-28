@@ -3,12 +3,16 @@ CREATE TABLE IF NOT EXISTS products (
     name VARCHAR(255) NOT NULL,
     category VARCHAR(255) NOT NULL,
     image_url VARCHAR(256),
-    calories_per_100g INT NOT NULL,
-    calories_portion INT NOT NULL,
-    fat_per_100g INT NOT NULL,
-    fat_portion INT NOT NULL,
-    carbs_per_100g INT NOT NULL,
-    carbs_portion INT NOT NULL,
-    protein_per_100g INT NOT NULL,
-    protein_portion INT NOT NULL
+
+    calories_per_100g INT,
+    calories_portion INT,
+    fat_per_100g INT,
+    fat_portion INT,
+    carbs_per_100g INT,
+    carbs_portion INT,
+    protein_per_100g INT,
+    protein_portion INT,
+    product_description TEXT,
+    ingredients TEXT,
+    allergens TEXT
 );
