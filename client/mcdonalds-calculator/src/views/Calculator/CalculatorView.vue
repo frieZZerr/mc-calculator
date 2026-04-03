@@ -7,23 +7,15 @@
       <div class="column selected-column">
         <div class="selected-header">
           <h2>Selected Products</h2>
-          <button class="clear-btn" @click="clearAllSelectedProducts">
-            Remove All
-          </button>
+          <button class="clear-btn" @click="clearAllSelectedProducts">Remove All</button>
         </div>
 
         <!-- Macro summary (always visible) -->
         <div class="macro-summary">
           <h3>Total Macros</h3>
 
-          <div
-            v-for="(macro, key) in macros"
-            :key="key"
-            class="macro-bar"
-          >
-            <span>
-              {{ macro.label }}: {{ macro.value }} {{ macro.unit }}
-            </span>
+          <div v-for="(macro, key) in macros" :key="key" class="macro-bar">
+            <span>{{ macro.label }}: {{ macro.value }} {{ macro.unit }}</span>
 
             <div class="bar">
               <div
@@ -42,11 +34,7 @@
 
         <!-- Selected products list -->
         <TransitionGroup name="list" tag="ul" class="selected-list" appear v-if="selectedProducts.length > 0">
-          <li
-            v-for="item in selectedProducts"
-            :key="item.id"
-            class="selected-item"
-          >
+          <li v-for="item in selectedProducts" :key="item.id" class="selected-item">
             <img :src="item.imageUrl" class="selected-image" />
             <span class="name">{{ item.name }}</span>
 
@@ -70,9 +58,7 @@
           <label for="category-select">Filter by category:</label>
           <select id="category-select" v-model="selectedCategory">
             <option value="all">All</option>
-            <option v-for="cat in categories" :key="cat" :value="cat">
-              {{ cat }}
-            </option>
+            <option v-for="cat in categories" :key="cat" :value="cat">{{ cat }}</option>
           </select>
         </div>
 
@@ -95,7 +81,6 @@
 
 <script setup>
 
-  import "./CalculatorView.css"
   import ProductCard from "../../components/ProductCard/ProductCard.vue"
   import { useCalculator } from "./CalculatorView"
 
@@ -112,3 +97,312 @@
   } = useCalculator()
 
 </script>
+
+<style scoped>
+
+  .page {
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: #111827;
+    padding: 30px;
+  }
+
+  .panel {
+    width: 1250px;
+    display: flex;
+    gap: 20px;
+    overflow: hidden;
+  }
+
+  .column {
+    flex: 1;
+    border-radius: 12px;
+    padding: 20px;
+    background: #1f2937;
+    color: white;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+  }
+
+  .selected-column {
+    position: sticky;
+    height: fit-content;
+  }
+
+  .products-column {
+    
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  @media (max-width: 1000px) {
+    .product-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 600px) {
+    .product-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  .selected-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  h2 {
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 22px;
+  }
+
+  .clear-btn {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .clear-btn:hover {
+    background: #dc2626;
+    transform: scale(1.05);
+  }
+
+  .products-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .products-header label {
+    font-weight: 500;
+    color: #f3f4f6;
+  }
+
+  .products-header select {
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid #9ca3af;
+    background: #111827;
+    color: #f3f4f6;
+  }
+
+  /* Selected list */
+  .selected-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+  }
+
+  .selected-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: linear-gradient(270deg, #1f2937 0%, #111827 50%);
+    margin-bottom: 10px;
+    border: 2px solid #111827;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+
+  .selected-item:hover {
+    background: #0f172a;
+    border-color: #fbbf24;
+    transform: translateX(4px) scale(1.01);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+  }
+
+  .selected-item:hover .selected-image {
+    transform: scale(1.1);
+  }
+
+  .selected-image {
+    transition: transform 0.2s ease;
+  }
+
+  .selected-item:hover .name {
+    color: #fbbf24;
+  }
+
+  .selected-image {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 6px;
+  }
+
+  .list-appear-from {
+    opacity: 0;
+    transform: translateX(-20px) scale(0.95);
+  }
+
+  .list-appear-active {
+    transition: all 0.3s ease;
+  }
+
+  .list-appear-to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+
+  .list-enter-from {
+    opacity: 0;
+    transform: translateX(-20px) scale(0.95);
+  }
+
+  .list-enter-active {
+    transition: all 0.3s ease;
+  }
+
+  .list-enter-to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+
+  .list-leave-from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+
+  .list-leave-active {
+    transition: all 0.25s ease;
+    position: absolute;
+  }
+
+  .list-leave-to {
+    opacity: 0;
+    transform: translateX(30px) scale(0.9);
+  }
+
+  .list-move {
+    transition: transform 0.3s ease;
+  }
+
+  .name {
+    flex: 1;
+    font-weight: 500;
+    color: white;
+  }
+
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .quantity-controls input {
+    width: 50px;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid #374151;
+    background: #1f2937;
+    color: #f9fafb;
+    padding: 4px;
+  }
+
+  .quantity-controls button {
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    background: #2563eb;
+    color: white;
+    transition: all 0.15s ease;
+  }
+
+  .quantity-controls button:hover {
+    background: #1d4ed8;
+    transform: scale(1.05);
+  }
+
+  .remove-btn {
+    background: #ef4444;
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background 0.2s, box-shadow 0.2s;
+    transition: all 0.15s ease;
+  }
+
+  .remove-btn:hover {
+    background: #dc2626;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+  }
+
+  .empty {
+    opacity: 0.7;
+  }
+
+  .macro-summary {
+    padding: 16px;
+    border-radius: 12px;
+    background: linear-gradient(270deg, #1f2937, 10%, #111827);
+    border: 7px solid #111827;
+    color: #f3f4f6;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .macro-summary h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #f3f4f6;
+  }
+
+  .macro-bar {
+    margin-bottom: 10px;
+  }
+
+  .macro-bar span {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+
+  .macro-gap {
+    height: 20px;
+  }
+
+  .bar {
+    width: 100%;
+    height: 10px;
+    background: #374151;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.5s ease-in-out;
+  }
+
+</style>
