@@ -124,6 +124,7 @@
     color: white;
     max-height: calc(100vh - 60px);
     overflow-y: auto;
+    margin-top: 10px;
   }
 
   .selected-column {
@@ -132,7 +133,6 @@
   }
 
   .products-column {
-    
   }
 
   .product-grid {
@@ -367,7 +367,7 @@
     color: #f3f4f6;
     box-shadow: 0 8px 20px rgba(0,0,0,0.4);
     position: sticky;
-    top: 0;
+    top: 25px;
     z-index: 10;
   }
 

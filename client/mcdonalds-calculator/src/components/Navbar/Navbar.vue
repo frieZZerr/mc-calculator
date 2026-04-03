@@ -9,6 +9,7 @@
 
       <ul class="nav-links">
         <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/menu">Menu</router-link></li>
         <li><router-link to="/calculator">Calculator</router-link></li>
       </ul>
 
@@ -29,8 +30,10 @@
     color: white;
     padding: 1rem 2rem;
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 1000;
   }
 
@@ -38,7 +41,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1280px;
+    max-width: 1250px;
     margin: 0 auto;
   }
 

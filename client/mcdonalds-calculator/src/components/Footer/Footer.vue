@@ -12,6 +12,7 @@
       <!-- Center -->
       <div class="footer-links">
         <router-link to="/">Home</router-link>
+        <router-link to="/menu">Menu</router-link>
         <router-link to="/calculator">Calculator</router-link>
       </div>
 
