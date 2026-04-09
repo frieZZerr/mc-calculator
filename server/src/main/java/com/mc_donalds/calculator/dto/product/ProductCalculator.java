@@ -1,12 +1,6 @@
 package com.mc_donalds.calculator.dto.product;
 
-public interface ProductCalculator {
-    Long getId();
-
-    String getName();
-    String getCategory();
-    String getImageUrl();
-
+public interface ProductCalculator extends ProductBase {
     int getCaloriesPer100g();
     int getCaloriesPortion();
 

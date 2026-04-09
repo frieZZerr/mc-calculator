@@ -46,7 +46,7 @@
 <script setup>
 
   import { ref, computed, onMounted } from "vue"
-  import { fetchProductsDetails } from "../../api/productApi"
+  import { fetchProductsBase } from "../../api/productApi"
 
   const products = ref([])
   const loading = ref(true)
@@ -68,7 +68,7 @@
       loading.value = true
       error.value = null
 
-      products.value = await fetchProductsDetails()
+      products.value = await fetchProductsBase()
     } catch (err) {
       console.error(err)
       error.value = "Failed to load menu"
@@ -185,8 +185,9 @@
     max-width: 100%;
     box-sizing: border-box;
     border-radius: 14px;
-    padding: 7px;
+    padding: 5px;
     background: #111827;
+    border: 2px solid #111827;
     color: #f9fafb;
     display: flex;
     flex-direction: column;
@@ -194,11 +195,27 @@
     gap: 10px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.35);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.2s ease;
+    position: relative;
   }
 
   .product-card:hover {
-    transform: translateY(-4px);
+    border-color: #fbbf24;
+    cursor: pointer;
+    transform: translateY(-4px) scale(1.02);
     box-shadow: 0 12px 24px rgba(0,0,0,0.45);
+  }
+
+  .product-card:hover .product-image {
+    transform: scale(1.1);
+  }
+
+  .product-card:hover h3 {
+    color: #fbbf24;
+  }
+
+  .product-image {
+    transition: transform 0.2s ease;
   }
 
   .image-wrapper {
@@ -230,16 +247,34 @@
   }
 
   .category-title {
-    font-weight: bold;
-    color: #f3f4f6;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #f9fafb;
+    padding: 10px 14px;
+    margin: 16px 10px;
     border-left: 5px solid #fbbf24;
-    padding-left: 10px;
-    margin: 10px;
+    border-radius: 8px;
+    background: linear-gradient(270deg, #1f2937 0%, #111827 50%);
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+
+  .category-title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 5px;
+    background: #fbbf24;
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.6);
+    border-radius: 4px;
   }
 
   .menu-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 20px;
   }
 

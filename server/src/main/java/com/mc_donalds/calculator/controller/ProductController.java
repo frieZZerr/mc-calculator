@@ -1,12 +1,12 @@
 package com.mc_donalds.calculator.controller;
 
 import com.mc_donalds.calculator.service.ProductService;
-import com.mc_donalds.calculator.dto.product.ProductCalculator;
-import com.mc_donalds.calculator.dto.product.ProductDetails;
+import com.mc_donalds.calculator.dto.product.*;
 
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
@@ -18,19 +18,18 @@ public class ProductController {
         this.service = service;
     }
 
+    @GetMapping
+    public List<ProductBase> getAllProducts() {
+        return service.getAllProducts();
+    }
+
     @GetMapping("/calculator")
     public List<ProductCalculator> getAllProductsCalculator() {
         return service.getAllProductsCalculator();
     }
 
-    @GetMapping("/details")
-    public List<ProductDetails> getAllProductsDetails() {
-        return service.getAllProductsDetails();
-    }
-
-    @GetMapping("/details/{id}")
-    public ProductDetails getProductDetailsById(@PathVariable Long id) {
-        return service.getProductDetailsById(id)
-                      .orElseThrow(() -> new RuntimeException("Product not found with id " + id));
+    @GetMapping("/{id}")
+    public Optional<ProductDetails> getProductDetailsById(@PathVariable Long id) {
+        return service.getProductDetailsById(id);
     }
 }
